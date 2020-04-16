@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MyMvcConfiguration  implements WebMvcConfigurer {
 
     /**
-     * 设置欢迎叶
+     * 设置欢迎页
      * @param registry
      */
     @Override

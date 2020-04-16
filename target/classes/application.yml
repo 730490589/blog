@@ -23,6 +23,16 @@ spring:
     #thymeleaf缓存关闭
   thymeleaf:
     cache: false
+#    redis配置
+  redis:
+    host: 192.168.226.138
+    port: 6379
+
   #mybatis别名配置
 mybatis-plus:
-  type-aliases-package: net.togogo.blog.pojo
+  type-aliases-package: net.togogo.blog.entity
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    net.togogo.blog: debug
