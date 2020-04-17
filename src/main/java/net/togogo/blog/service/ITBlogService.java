@@ -28,4 +28,10 @@ public interface ITBlogService extends IService<TBlog> {
      */
    IPage<TBlog> findBlogByPage(IPage<TBlog> page,TBlog blog);
 
+    /**
+     * 根据id查询博客详情
+     * @param id
+     * @return
+     */
+    TBlog findBlogById(Integer id);
 }

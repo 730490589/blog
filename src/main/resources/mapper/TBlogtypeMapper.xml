@@ -3,7 +3,7 @@
 <mapper namespace="net.togogo.blog.mapper.TBlogtypeMapper">
 
     <select id="findBlogTypeNameAndBlogCount" resultType="TBlogtype">
-        SELECT typeName,COUNT(b.`id`) blogCount
+        SELECT t.`id`,typeName,COUNT(b.`id`) blogCount
         FROM t_blogtype t LEFT JOIN t_blog b
         ON t.`id`=b.`typeId`
         GROUP BY t.`typeName`

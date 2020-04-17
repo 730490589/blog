@@ -7,7 +7,7 @@ $(function () {
         dataType:"json",
         success:function (data) {
             $(data).each(function () {
-                var  li = "<li><span><a href=\"#\">"+this.typeName+"("+ this.blogCount + ")</a></span></li>"
+                var  li = "<li><span><a href='/index.html?typeId="+this.id+"'>"+this.typeName+"("+ this.blogCount + ")</a></span></li>"
                 $("#blogTypeList").append(li)
             })
         }
@@ -20,7 +20,7 @@ $(function () {
         dataType:"json",
         success:function (data) {
             $(data).each(function () {
-                var  li = " <li><span><a href='#'>"+this.releaseDateStr+"("+this.blogCount+")</a></span></li>"
+                var  li = " <li><span><a href='/index.html?releaseDateStr="+this.releaseDateStr+"'>"+this.releaseDateStr+"("+this.blogCount+")</a></span></li>"
                 $("#dateList").append(li)
             })
         }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content">
+    <div class="data_list">
+       <div class="data_list_title">
+           <i class="glyphicon glyphicon-th-large"></i> 博客信息
+       </div>
+       <div>
+           <div class="blog_title">
+               <h3>
+               </h3>
+           </div>
+           <div class="blog_info">
+               发布时间：『<span th:text="${#dates.format(blog.releaseDate,'yyyy-MM-dd HH:mm:ss')}">2019-01-01 12:25:30</span>』&nbsp;&nbsp;
+               博客类别：<span th:text="${blog.blogtype.typeName}">Java基础分类</span>&nbsp;&nbsp;
+               阅读(<span th:text="${blog.clickHit}">20</span>)
+               评论(<span>[[${blog.replyHit}]]</span>)
+           </div>
+           <div class="blog_content" th:utext="${blog.content}"></div>
+           <div class="blog_keyWord">
+               <font><strong>关键字：</strong></font>
+               <font>
+                   &nbsp;&nbsp;无关键字
+               </font>
+               <font >
+                   &nbsp;&nbsp;&nbsp;&nbsp;<a  target="_blank">Java</a>&nbsp;&nbsp;
+               </font>
+
+           </div>
+           <div class="blog_lastAndNextPage" th:utext="${pageCode}"></div>
+       </div>
+   </div>
+
+</div>
+</body>
+</html>

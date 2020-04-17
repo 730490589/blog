@@ -8,6 +8,14 @@
     <script src="/source/js/jquery-3.4.1.min.js"></script>
     <script src="/source/bootstrap/js/bootstrap.min.js"></script>
     <script src="/source/js/leftmenu.js"></script>
+
+    <script type="text/javascript"
+            src="/source/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+    <link rel="stylesheet"
+          href="/source/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
 </head>
 <body>
 <div class="container-fluid">
@@ -19,36 +27,8 @@
         <!-- 左侧导航栏 -->
         <div id="leftMenu" th:insert="foreign/common :: #lm">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" th:insert="${pageContent} :: #content">
             <!--核心部分-->
-            <div class="data_list">
-                <div class="data_list_title">
-                    <i class="glyphicon glyphicon-th"></i> 最新博客
-                </div>
-                <div class="datas">
-                    <ul>
-                        <li style="margin-bottom: 30px" th:each="blog:${blogs}">
-                            <span class="date">
-                               <a href="#" th:text="${#dates.format(blog.releaseDate,'yyyy年MM月dd日')}">2019年06月11日</a>
-                            </span>
-                            <span class="title"><a href="#" th:text="${blog.title}">${blog.title}</a>
-                            </span>
-                            <span class="summary" th:text="${blog.summary}">${blog.summary}</span>
-                        <!--    <span class="img">
-                               <a href="/blog/articles/524.html"><img src="1.jpg" title="1.jpg" alt="1.jpg"></a>&nbsp;&nbsp;
-                            </span>-->
-                            <span class="info">发表于
-                               <span th:text="${#dates.format(blog.releaseDate,'yyyy年MM月dd日')}">2018-01-01</span>
-                               阅读(<span th:text="${blog.clickHit}">100</span>) 评论(<span th:text="${blog.replyHit}">10</span>)
-                            </span>
-                            <hr style="height: 5px; border: none; border-top: 1px dashed gray; padding-bottom: 10px;"/>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center">
-                <nav></nav>
-            </div>
         </div>
     </div>
     <!-- 底部部分 -->

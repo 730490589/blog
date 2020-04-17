@@ -31,4 +31,10 @@ public interface TBlogMapper extends BaseMapper<TBlog> {
      */
     IPage<TBlog> findBlogByPage(@Param("page") IPage<TBlog> page, @Param("blog") TBlog blog);
 
+    /**
+     * 根据id查询博客详情
+     * @param id
+     * @return
+     */
+    TBlog findBlogById(Integer id);
 }

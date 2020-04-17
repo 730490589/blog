@@ -54,4 +54,18 @@ public class TBlogServiceImpl extends ServiceImpl<TBlogMapper, TBlog> implements
     public IPage<TBlog> findBlogByPage(IPage<TBlog> page, TBlog blog) {
         return tBlogMapper.findBlogByPage(page, blog);
     }
+
+    @Override
+    public TBlog findBlogById(Integer id) {
+
+//        修改博客的点击数量
+//        先查询博客信息
+        TBlog blog = tBlogMapper.findBlogById(id);
+//        把点击数量拿出来进行 +1 然后在放回去
+        blog.setClickHit(blog.getClickHit() + 1);
+//        最后更新到数据库
+        tBlogMapper.updateById(blog);
+
+        return tBlogMapper.findBlogById(id);
+    }
 }

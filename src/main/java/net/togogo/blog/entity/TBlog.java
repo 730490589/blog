@@ -1,6 +1,8 @@
 package net.togogo.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +26,12 @@ import java.util.Date;
 public class TBlog implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 博客id
+     */
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 博客标题
@@ -82,5 +90,10 @@ public class TBlog implements Serializable {
     @TableField(exist = false)
     private Integer blogCount;
 
+    /**
+     * 博客类别
+     */
+    @TableField(exist = false)
+    private TBlogtype blogtype;
 
 }

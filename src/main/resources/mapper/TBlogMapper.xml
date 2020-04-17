@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.togogo.blog.mapper.TBlogMapper">
 
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="net.togogo.blog.entity.TBlog">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="summary" property="summary" />
+        <result column="releaseDate" property="releaseDate" />
+        <result column="clickHit" property="clickHit" />
+        <result column="replyHit" property="replyHit" />
+        <result column="content" property="content" />
+        <result column="typeId" property="typeId" />
+        <result column="keyWord" property="keyWord" />
+    </resultMap>
+
     <!--按日期查询博客并统计数量-->
     <select id="findBlogDateAndCount" resultType="net.togogo.blog.entity.TBlog">
         SELECT DATE_FORMAT(releaseDate,'%Y年%m月') releaseDateStr ,COUNT(1) blogCount
@@ -12,7 +25,7 @@
     <!--分页查询博客信息-->
     <select id="findBlogByPage" resultType="net.togogo.blog.entity.TBlog">
 
-        SELECT * FROM t_blog
+        SELECT * FROM t_blog b
         <where>
             <if test="blog.keyWord !=null and blog.keyWord != ''">
                 and b.keyWord like('%'#{blog.keyWord}'%')
@@ -20,12 +33,27 @@
             <if test="blog.typeId != null">
                 and b.typeId = #{blog.typeId}
             </if>
-            <if test="blog.releaseDateStr != null and blog.releaseDateStr != ''">
-                and DATE_FORMART(b.releaseDate,'%Y年%m月') =#{blog.releaseDateStr}
+            <if test="blog.releaseDateStr!=null and blog.releaseDateStr != ''">
+                and DATE_FORMAT(b.releasedate,'%Y年%m月') = #{blog.releaseDateStr}
             </if>
         </where>
 
         ORDER BY releaseDate DESC
 
+    </select>
+
+    <resultMap id="blogTypeResultMap" type="net.togogo.blog.entity.TBlog" extends="BaseResultMap">
+        <!--管理博客类别-->
+        <association property="blogtype" javaType="net.togogo.blog.entity.TBlogtype">
+            <id column="id" property="id"/>
+            <result property="typeName" column="typeName"></result>
+        </association>
+    </resultMap>
+    
+    <select id="findBlogById" resultMap="blogTypeResultMap">
+        select b.*,t.`typeName` 
+        from t_blog b 
+        inner join t_blogtype t on t.`id`=b.`typeId` 
+        where b.`id`=#{id}
     </select>
 </mapper>
